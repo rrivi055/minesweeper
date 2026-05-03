@@ -88,3 +88,19 @@ export const countAdjacentMines = (board) => {
         });
     });
 };
+/**
+ * Reveals a cell and its neighbors recursively if the cell has no adjacent mines.
+ * @param {Array<Array<Object>>} board - The game board.
+ * @param {number} row - The row index of the cell.
+ * @param {number} col - The column index of the cell.
+ */
+export const revealCell = (board, row, col) => {
+    const cell = board[row][col];
+    if (cell.isRevealed || cell.isFlagged) return;
+    cell.isRevealed = true;
+    if (cell.isMine || cell.neighborMines > 0) return;
+    const neighbors = getNeighbors(board, row, col);
+    neighbors.forEach(neighbor => {
+        revealCell(board, neighbor.row, neighbor.col);
+    });
+};
