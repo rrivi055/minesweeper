@@ -73,3 +73,18 @@ export const getNeighbors = (board, row, col) => {
 
     return neighbors;
 };
+
+/**
+ * Iterates through the board and updates the neighborMines count for each cell.
+ * @param {Array<Array<Object>>} board - The game board.
+ */
+export const countAdjacentMines = (board) => {
+    board.forEach((row) => {
+        row.forEach((cell) => {
+            if (cell.isMine) return;
+            const neighbors = getNeighbors(board, cell.row, cell.col);
+            const mineNeighbors = neighbors.filter(neighbor => neighbor.isMine);
+            cell.neighborMines = mineNeighbors.length;
+        });
+    });
+};
