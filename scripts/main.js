@@ -33,4 +33,14 @@ const gameState = {
     secondsElapsed: 0,
     timerInterval: null
 };
-
+/**
+ * Initializes the game state, generates the logical board, 
+ * and triggers the initial UI rendering.
+ */
+const initGame = () => {
+    gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
+    // Reset game state variables if played again
+    gameState.isGameOver = false;
+    gameState.secondsElapsed = 0;
+    renderBoard();
+};
