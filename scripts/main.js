@@ -34,6 +34,32 @@ const gameState = {
     timerInterval: null
 };
 /**
+ * Renders the game board by creating DOM elements for each cell.
+ * Clears the existing board and attaches event listeners to each new cell.
+ * @param {Array<Array<Object>>} board - The 2D array representing the logical board.
+ */
+const renderBoard = (board) => {
+    const boardContainer = document.querySelector('#game-board');
+    boardContainer.innerHTML = '';
+    // another option if last line is problematic by teacher's standards:
+    // while (boardContainer.firstChild) {
+    // boardContainer.removeChild(boardContainer.firstChild);
+// }
+    boardContainer.style.gridTemplateColumns = `repeat(${gameState.cols}, 30px)`;
+    board.forEach((row, rowIndex) => {
+        row.forEach((cell, colIndex) => {
+            const cellElement = document.createElement('button');
+            cellElement.classList.add('cell');
+            cellElement.dataset.row = rowIndex;
+            cellElement.dataset.col = colIndex;
+            cellElement.addEventListener('click', () => {
+                handleCellClick(rowIndex, colIndex);
+            });
+            boardContainer.appendChild(cellElement);
+        });
+    });
+};
+/**
  * Initializes the game state, generates the logical board, 
  * and triggers the initial UI rendering.
  */
@@ -42,5 +68,5 @@ const initGame = () => {
     // Reset game state variables if played again
     gameState.isGameOver = false;
     gameState.secondsElapsed = 0;
-    renderBoard();
+    renderBoard(gameState.board);
 };
