@@ -28,12 +28,28 @@ const gameState = {
     rows: currentLevelSettings.rows,
     cols: currentLevelSettings.cols,
     minesCount: currentLevelSettings.mines,
+    flagsUsed: 0,
     board: [],         
     isGameOver: false,
     secondsElapsed: 0,
     timerInterval: null
 };
 
+/**
+ * Updates the visual statistics on the screen.
+ * Synchronizes the timer and the remaining mines counter with the gameState.
+ */
+const updateStats = () => {
+    const minesCountElement = document.querySelector('#mines-count');
+    if (minesCountElement) {
+        const remainingMines = gameState.minesCount - gameState.flagsUsed;
+        minesCountElement.textContent = remainingMines;
+    }
+    const timerElement = document.querySelector('#timer');
+    if (timerElement) {
+        timerElement.textContent = gameState.secondsElapsed;
+    }
+};
 /**
  * Handles left-click on a cell to reveal it.
  * Extracts coordinates from the data attributes and updates the game state.
@@ -42,7 +58,8 @@ const gameState = {
 const handleCellClick = (event) => {
     const row = parseInt(event.currentTarget.dataset.row);
     const col = parseInt(event.currentTarget.dataset.col);
-    if (gameState.isGameOver || gameState.board[row][col].isFlagged) return;
+    const cell = gameState.board[row][col];
+    if (gameState.isGameOver || cell.isRevealed || cell.isFlagged) return;
     revealCell(gameState.board, row, col);
     renderBoard(gameState.board);
 };
@@ -55,8 +72,16 @@ const handleRightClick = (event) => {
     event.preventDefault();
     const row = parseInt(event.currentTarget.dataset.row);
     const col = parseInt(event.currentTarget.dataset.col);
-    if (gameState.isGameOver || gameState.board[row][col].isRevealed) return;
-    gameState.board[row][col].isFlagged = !gameState.board[row][col].isFlagged;
+    const cell = gameState.board[row][col];
+    if (gameState.isGameOver || cell.isRevealed) return;
+    if (!cell.isFlagged) {
+        cell.isFlagged = true;
+        gameState.flagsUsed++;
+    } else {
+        cell.isFlagged = false;
+        gameState.flagsUsed--;
+    }
+    updateStats();
     renderBoard(gameState.board);
 };
 /**
@@ -69,7 +94,7 @@ const renderBoard = (board) => {
     boardContainer.innerHTML = '';
     // another option if last line is problematic by teacher's standards:
     // while (boardContainer.firstChild) {
-    // boardContainer.removeChild(boardContainer.firstChild);
+    //  boardContainer.removeChild(boardContainer.firstChild);
 // }
     boardContainer.style.gridTemplateColumns = `repeat(${gameState.cols}, 30px)`;
     board.forEach((row, rowIndex) => {
@@ -78,6 +103,13 @@ const renderBoard = (board) => {
             cellElement.classList.add('cell');
             cellElement.dataset.row = rowIndex;
             cellElement.dataset.col = colIndex;
+            if (cell.isRevealed) {
+                cellElement.classList.add('revealed');
+                // כאן תבוא לוגיקה נוספת להצגת מספר המוקשים מסביב
+            } else if (cell.isFlagged) {
+                cellElement.textContent = '🚩';
+                cellElement.classList.add('flagged');
+            }
             cellElement.addEventListener('click', handleCellClick);
             cellElement.addEventListener('contextmenu', handleRightClick);
             boardContainer.appendChild(cellElement);
@@ -89,9 +121,15 @@ const renderBoard = (board) => {
  * and triggers the initial UI rendering.
  */
 const initGame = () => {
-    gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
     // Reset game state variables if played again
+    if (gameState.timerInterval) {
+        clearInterval(gameState.timerInterval);
+        gameState.timerInterval = null;
+    }
     gameState.isGameOver = false;
+    gameState.flagsUsed = 0;
     gameState.secondsElapsed = 0;
+    gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
+    updateStats();
     renderBoard(gameState.board);
 };
