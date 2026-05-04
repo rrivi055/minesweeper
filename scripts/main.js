@@ -33,6 +33,32 @@ const gameState = {
     secondsElapsed: 0,
     timerInterval: null
 };
+
+/**
+ * Handles left-click on a cell to reveal it.
+ * Extracts coordinates from the data attributes and updates the game state.
+ * @param {Event} event - The click event object.
+ */
+const handleCellClick = (event) => {
+    const row = parseInt(event.currentTarget.dataset.row);
+    const col = parseInt(event.currentTarget.dataset.col);
+    if (gameState.isGameOver || gameState.board[row][col].isFlagged) return;
+    revealCell(gameState.board, row, col);
+    renderBoard(gameState.board);
+};
+/**
+ * Handles right-click on a cell to toggle a flag.
+ * Prevents the default context menu from appearing.
+ * @param {Event} event - The contextmenu event object.
+ */
+const handleRightClick = (event) => {
+    event.preventDefault();
+    const row = parseInt(event.currentTarget.dataset.row);
+    const col = parseInt(event.currentTarget.dataset.col);
+    if (gameState.isGameOver || gameState.board[row][col].isRevealed) return;
+    gameState.board[row][col].isFlagged = !gameState.board[row][col].isFlagged;
+    renderBoard(gameState.board);
+};
 /**
  * Renders the game board by creating DOM elements for each cell.
  * Clears the existing board and attaches event listeners to each new cell.
@@ -52,9 +78,8 @@ const renderBoard = (board) => {
             cellElement.classList.add('cell');
             cellElement.dataset.row = rowIndex;
             cellElement.dataset.col = colIndex;
-            cellElement.addEventListener('click', () => {
-                handleCellClick(rowIndex, colIndex);
-            });
+            cellElement.addEventListener('click', handleCellClick);
+            cellElement.addEventListener('contextmenu', handleRightClick);
             boardContainer.appendChild(cellElement);
         });
     });
