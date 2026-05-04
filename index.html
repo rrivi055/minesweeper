@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minesweeper Professional</title>
-    <script type="module" src="./scripts/main.js"></script>
 </head>
 <body>
-    <div id="game-board"></div>
+    <div id="setup-container">
+        <h1>WELCOME</h1>
+        <form id="setup-form" action="game.html" method="GET">
+            <label for="player-name">Name:</label>
+            <input type="text" id="player-name" name="userName" placeholder="Enter name" required>
+
+            <br><br>
+
+            <label for="level-select">Difficulty:</label>
+            <select id="level-select" name="level" required>
+                <option value="" disabled selected>Select level...</option>
+                <option value="easy">9x9 easy</option>
+                <option value="normal">16x16 normal</option>
+                <option value="hard">30x16 hard</option>
+            </select>
+
+            <br><br>
+
+            <button type="submit" id="start-btn">Start gaming</button>
+        </form>
+    </div>
 </body>
 </html>
