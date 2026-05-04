@@ -73,7 +73,6 @@ export const getNeighbors = (board, row, col) => {
 
     return neighbors;
 };
-
 /**
  * Iterates through the board and updates the neighborMines count for each cell.
  * @param {Array<Array<Object>>} board - The game board.
@@ -103,4 +102,14 @@ export const revealCell = (board, row, col) => {
     neighbors.forEach(neighbor => {
         revealCell(board, neighbor.row, neighbor.col);
     });
+};
+/**
+ * Checks if the player has won the game by comparing the number of hidden cells to the mine count.
+ * @param {Array<Array<Object>>} board - The game board.
+ * @param {number} minesCount - The total number of mines in the game.
+ * @returns {boolean} True if the player has won, false otherwise.
+ */
+export const checkWinCondition = (board, minesCount) => {
+    const hiddenCells = board.flat().filter(cell => !cell.isRevealed);
+    return hiddenCells.length === minesCount;
 };
