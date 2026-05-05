@@ -24,6 +24,9 @@ const gameState = {
     timerInterval: null
 };
 
+const level = gameState.difficulty;
+document.querySelector('#difficulty-display').textContent = level.charAt(0).toUpperCase() + level.slice(1);
+
 /**
  * Updates the visual statistics on the screen.
  * Synchronizes the timer and the remaining mines counter with the gameState.
