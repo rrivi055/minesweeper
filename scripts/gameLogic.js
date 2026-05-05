@@ -113,3 +113,22 @@ export const checkWinCondition = (board, minesCount) => {
     const hiddenCells = board.flat().filter(cell => !cell.isRevealed);
     return hiddenCells.length === minesCount;
 };
+/**
+ * Retrieves the configuration settings for a specific game difficulty level.
+ * @param {string} level - The difficulty level chosen by the user (e.g., 'easy', 'normal', 'hard').
+ * @returns {Object} An object containing the game board configuration:
+ * @property {number} rows - The number of rows for the selected level.
+ * @property {number} cols - The number of columns for the selected level.
+ * @property {number} mines - The total number of mines to be placed on the board.
+ * @example
+ * // Returns { rows: 9, cols: 9, mines: 10 }
+ * getSettings('easy');
+ */
+export const getSettings = (level) => {
+    const levels = {
+        'easy': { rows: 9, cols: 9, mines: 10 },
+        'normal': { rows: 16, cols: 16, mines: 40 },
+        'hard': { rows: 16, cols: 30, mines: 99 }
+    };
+    return levels[level] || levels['easy'];
+};

@@ -1,6 +1,4 @@
-import { createBoard } from './gameLogic.js';
-import { revealCell } from './gameLogic.js';
-import { checkWinCondition } from './gameLogic.js';
+import { createBoard,revealCell,checkWinCondition,getSettings } from './gameLogic.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -10,15 +8,6 @@ const levelFromUrl = urlParams.get('level');
 if (!nameFromUrl || !levelFromUrl) {
     window.location.href = 'index.html';
 }
-
-const getSettings = (level) => {
-    const levels = {
-        'easy': { rows: 9, cols: 9, mines: 10 },
-        'normal': { rows: 16, cols: 16, mines: 40 },
-        'hard': { rows: 16, cols: 30, mines: 99 }
-    };
-    return levels[level] || levels['easy'];
-};
 
 const currentLevelSettings = getSettings(levelFromUrl);
 
@@ -60,6 +49,9 @@ const handleCellClick = (event) => {
     const col = parseInt(event.currentTarget.dataset.col);
     const cell = gameState.board[row][col];
     if (gameState.isGameOver || cell.isRevealed || cell.isFlagged) return;
+    if (gameState.secondsElapsed === 0 && !gameState.timerInterval) {
+        startTimer();
+    }
     revealCell(gameState.board, row, col);
     if (cell.isMine) {
         gameState.isGameOver = true;
@@ -142,8 +134,7 @@ const renderBoard = (board) => {
  * Clears any active timers and prepares the state for a new game session.
  */
 const resetGameState = () => {
-    if (gameState.timerInterval) clearInterval(gameState.timerInterval);
-    gameState.timerInterval = null;
+    stopTimer();
     gameState.secondsElapsed = 0;
     gameState.flagsUsed = 0;
     gameState.isGameOver = false;
