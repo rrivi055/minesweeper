@@ -117,18 +117,23 @@ const renderBoard = (board) => {
     });
 };
 /**
+ * Resets the game state variables to their default values.
+ * Clears any active timers and prepares the state for a new game session.
+ */
+const resetGameState = () => {
+    if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+    gameState.timerInterval = null;
+    gameState.secondsElapsed = 0;
+    gameState.flagsUsed = 0;
+    gameState.isGameOver = false;
+    gameState.board = [];
+};
+/**
  * Initializes the game state, generates the logical board, 
  * and triggers the initial UI rendering.
  */
 const initGame = () => {
-    // Reset game state variables if played again
-    if (gameState.timerInterval) {
-        clearInterval(gameState.timerInterval);
-        gameState.timerInterval = null;
-    }
-    gameState.isGameOver = false;
-    gameState.flagsUsed = 0;
-    gameState.secondsElapsed = 0;
+    resetGameState();
     gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
     updateStats();
     renderBoard(gameState.board);
