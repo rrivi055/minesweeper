@@ -103,15 +103,29 @@ const renderBoard = (board) => {
             cellElement.classList.add('cell');
             cellElement.dataset.row = rowIndex;
             cellElement.dataset.col = colIndex;
+            cellElement.tabIndex = 0; 
             if (cell.isRevealed) {
                 cellElement.classList.add('revealed');
-                // כאן תבוא לוגיקה נוספת להצגת מספר המוקשים מסביב
+                if (cell.isMine) {
+                    cellElement.textContent = '💣';
+                    cellElement.classList.add('mine');
+                } else if (cell.neighborMines > 0) {
+                    cellElement.textContent = cell.neighborMines;
+                    cellElement.classList.add(`mines-${cell.neighborMines}`);
+                }
             } else if (cell.isFlagged) {
                 cellElement.textContent = '🚩';
                 cellElement.classList.add('flagged');
             }
             cellElement.addEventListener('click', handleCellClick);
             cellElement.addEventListener('contextmenu', handleRightClick);
+            cellElement.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    handleCellClick(event);
+                } else if (event.key === ' ' || event.code === 'Space') { 
+                    handleRightClick(event);
+                }
+            });
             boardContainer.appendChild(cellElement);
         });
     });
