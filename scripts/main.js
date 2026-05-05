@@ -1,4 +1,4 @@
-import { createBoard,revealCell,startTimer,stopTimer,checkWinCondition,getSettings } from './gameLogic.js';
+import { createBoard,revealCell,startTimer,stopTimer,resetGameState,checkWinCondition,getSettings } from './gameLogic.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -130,22 +130,11 @@ const renderBoard = (board) => {
     });
 };
 /**
- * Resets the game state variables to their default values.
- * Clears any active timers and prepares the state for a new game session.
- */
-const resetGameState = () => {
-    stopTimer(gameState);
-    gameState.secondsElapsed = 0;
-    gameState.flagsUsed = 0;
-    gameState.isGameOver = false;
-    gameState.board = [];
-};
-/**
  * Initializes the game state, generates the logical board, 
  * and triggers the initial UI rendering.
  */
 const initGame = () => {
-    resetGameState();
+    resetGameState(gameState);
     gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
     updateStats();
     renderBoard(gameState.board);

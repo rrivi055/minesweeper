@@ -130,6 +130,18 @@ export const stopTimer = (state) => {
     }
 };
 /**
+ * Resets the game state variables to their default values.
+ * Clears any active timers and prepares the state for a new game session.
+ *  @param {Object} state - The game state object to reset.
+ */
+export const resetGameState = (state) => {
+    stopTimer(state);
+    state.secondsElapsed = 0;
+    state.flagsUsed = 0;
+    state.isGameOver = false;
+    state.board = [];
+};
+/**
  * Checks if the player has won the game by comparing the number of hidden cells to the mine count.
  * @param {Array<Array<Object>>} board - The game board.
  * @param {number} minesCount - The total number of mines in the game.
