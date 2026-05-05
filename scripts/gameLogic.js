@@ -104,6 +104,32 @@ export const revealCell = (board, row, col) => {
     });
 };
 /**
+ * Starts the game timer if it's not already running.
+ * Increments the elapsed seconds in the state every 1000ms and triggers a callback function.
+ * @param {Object} state - The current game state object.
+ * //@param {number} state.timerInterval - The ID of the current interval (or null).
+ * //@param {number} state.secondsElapsed- The total seconds passed since the start.
+ * @param {Function} onTick - A callback function to be executed on every tick (e.g., to update the UI).
+ */
+export const startTimer = (state, onTick) => {
+    if (state.timerInterval) return;
+    state.timerInterval = setInterval(() => {
+        state.secondsElapsed++;
+        onTick();
+    }, 1000);
+};
+/**
+ * Stops the game timer and resets the interval ID in the state.
+ * @param {Object} state - The game state object to be updated.
+ * //@param {number} state.timerInterval - The ID of the current interval (or null).
+ */
+export const stopTimer = (state) => {
+    if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+    }
+};
+/**
  * Checks if the player has won the game by comparing the number of hidden cells to the mine count.
  * @param {Array<Array<Object>>} board - The game board.
  * @param {number} minesCount - The total number of mines in the game.

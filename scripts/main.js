@@ -1,4 +1,4 @@
-import { createBoard,revealCell,checkWinCondition,getSettings } from './gameLogic.js';
+import { createBoard,revealCell,startTimer,stopTimer,checkWinCondition,getSettings } from './gameLogic.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -50,7 +50,7 @@ const handleCellClick = (event) => {
     const cell = gameState.board[row][col];
     if (gameState.isGameOver || cell.isRevealed || cell.isFlagged) return;
     if (gameState.secondsElapsed === 0 && !gameState.timerInterval) {
-        startTimer();
+        startTimer(gameState,updateStats);
     }
     revealCell(gameState.board, row, col);
     if (cell.isMine) {
@@ -134,7 +134,7 @@ const renderBoard = (board) => {
  * Clears any active timers and prepares the state for a new game session.
  */
 const resetGameState = () => {
-    stopTimer();
+    stopTimer(gameState);
     gameState.secondsElapsed = 0;
     gameState.flagsUsed = 0;
     gameState.isGameOver = false;
