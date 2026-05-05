@@ -23,10 +23,17 @@ const gameState = {
     secondsElapsed: 0,
     timerInterval: null
 };
-
-const level = gameState.difficulty;
-document.querySelector('#difficulty-display').textContent = level.charAt(0).toUpperCase() + level.slice(1);
-
+/**
+ * Updates the difficulty level display in the UI.
+ * Syncs the text with the current gameState and capitalizes it.
+ */
+const updateDifficultyDisplay = () => {
+    const level = gameState.difficulty;
+    const displayElement = document.querySelector('#difficulty-display');
+    if (displayElement) {
+        displayElement.textContent = level.charAt(0).toUpperCase() + level.slice(1);
+    }
+};
 /**
  * Updates the visual statistics on the screen.
  * Synchronizes the timer and the remaining mines counter with the gameState.
@@ -140,6 +147,7 @@ const renderBoard = (board) => {
  * and triggers the initial UI rendering.
  */
 const initGame = () => {
+    updateDifficultyDisplay(); 
     resetGameState(gameState);
     gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
     updateStats();
