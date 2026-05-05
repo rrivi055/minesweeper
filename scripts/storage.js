@@ -25,3 +25,11 @@ const saveNewScore = (playerName, level, time) => {
     scores.push(newResult);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(scores));
 };
+/**
+ * Sorts an array of scores by time in ascending order.
+ * @param {Array<Object>} scoresArray - The array of score objects to sort.
+ * @returns {Array<Object>} A new sorted array (shallow copy).
+ */
+const sortScoresByTime = (scoresArray) => {
+    return [...scoresArray].sort((a, b) => a.time - b.time);
+};
