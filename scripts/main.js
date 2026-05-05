@@ -74,6 +74,9 @@ const handleRightClick = (event) => {
     const cell = gameState.board[row][col];
     if (gameState.isGameOver || cell.isRevealed) return;
     if (!cell.isFlagged) {
+        if (gameState.flagsUsed >= gameState.minesCount) {
+            return; 
+        }
         cell.isFlagged = true;
         gameState.flagsUsed++;
     } else {
