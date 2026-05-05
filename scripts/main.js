@@ -161,8 +161,8 @@ const initGame = () => {
 const goToNextLevel = () => {
     let nextLevel = '';
     if (gameState.difficulty === 'easy') {
-        nextLevel = 'medium';
-    } else if (gameState.difficulty === 'medium') {
+        nextLevel = 'normal';
+    } else if (gameState.difficulty === 'normal') {
         nextLevel = 'hard';
     } else {
         initGame();
