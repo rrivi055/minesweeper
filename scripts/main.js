@@ -61,6 +61,13 @@ const handleCellClick = (event) => {
     const cell = gameState.board[row][col];
     if (gameState.isGameOver || cell.isRevealed || cell.isFlagged) return;
     revealCell(gameState.board, row, col);
+    if (cell.isMine) {
+        gameState.isGameOver = true;
+        handleGameOver();
+        return;
+    } else {
+        checkWinCondition();
+    }
     renderBoard(gameState.board);
 };
 /**
