@@ -33,3 +33,13 @@ const saveNewScore = (playerName, level, time) => {
 const sortScoresByTime = (scoresArray) => {
     return [...scoresArray].sort((a, b) => a.time - b.time);
 };
+/**
+ * Retrieves and sorts high scores filtered by a specific difficulty level.
+ * @param {string} level - The difficulty level to filter by.
+ * @returns {Array<Object>} A sorted array of filtered high scores.
+ */
+const getFilteredScores = (level) => {
+    const allScores = getAllScores();
+    const filtered = allScores.filter(score => score.level === level);
+    return sortScoresByTime(filtered);
+};
