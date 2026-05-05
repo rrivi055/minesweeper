@@ -153,3 +153,27 @@ const initGame = () => {
     updateStats();
     renderBoard(gameState.board);
 };
+/**
+ * Advances the game to the next difficulty level.
+ * Updates gameState settings, re-initializes the board, 
+ * and syncs the URL parameters without a page reload.
+ */
+const goToNextLevel = () => {
+    let nextLevel = '';
+    if (gameState.difficulty === 'easy') {
+        nextLevel = 'medium';
+    } else if (gameState.difficulty === 'medium') {
+        nextLevel = 'hard';
+    } else {
+        initGame();
+        return;
+    }
+    const newSettings = getSettings(nextLevel);
+    gameState.difficulty = nextLevel;
+    gameState.rows = newSettings.rows;
+    gameState.cols = newSettings.cols;
+    gameState.minesCount = newSettings.mines;
+    initGame();
+    const newUrl = `?userName=${gameState.playerName}&level=${nextLevel}`;
+    window.history.pushState({}, '', newUrl);
+};
