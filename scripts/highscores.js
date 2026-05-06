@@ -1,5 +1,5 @@
 import{getAllScores, sortScoresByTime,getCurrentPlayer, getFilteredScores} from './storage.js'
-
+import { formatTime } from './gameLogic.js';
 /**
  * Renders high score cards into the provided container.
  * @param {Array<Object>} scores - Array of score objects to display.
@@ -32,7 +32,7 @@ const renderScoreCards = (scores,container) => {
         };
         card.appendChild(createScoreLine('Name', score.playerName));
         card.appendChild(createScoreLine('Level', score.level));
-        card.appendChild(createScoreLine('Time', score.time));
+        card.appendChild(createScoreLine('Time', formatTime(score.time)));
         card.appendChild(createScoreLine('Date', score.date || new Date().toLocaleDateString()));
 
         container.appendChild(card);

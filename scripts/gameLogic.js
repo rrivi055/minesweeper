@@ -170,3 +170,15 @@ export const getSettings = (level) => {
     };
     return levels[level] || levels['easy'];
 };
+/**
+ * Converts a total number of seconds into a formatted string (MM:SS).
+ * @param {number} totalSeconds - The total elapsed seconds to format.
+ * @returns {string} The formatted time string with leading zeros if needed.
+ */
+export const formatTime = (totalSeconds) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const displayMinutes = String(minutes).padStart(2, '0');
+    const displaySeconds = String(seconds).padStart(2, '0');
+    return `${displayMinutes}:${displaySeconds}`;
+};

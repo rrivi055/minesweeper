@@ -1,5 +1,5 @@
 import { createBoard,revealCell,startTimer,stopTimer,resetGameState,checkWinCondition,getSettings,
-            countAdjacentMines,plantMines } from './gameLogic.js';
+            countAdjacentMines,plantMines,formatTime } from './gameLogic.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -47,7 +47,7 @@ const updateStats = () => {
     }
     const timerElement = document.querySelector('#timer');
     if (timerElement) {
-        timerElement.textContent = gameState.secondsElapsed;
+        timerElement.textContent = formatTime(gameState.secondsElapsed);
     }
 };
 /**
