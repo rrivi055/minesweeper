@@ -1,3 +1,4 @@
+import { saveNewScore } from './storage.js';
 /**
  * Creates a 2D array representing the game board.
  * @param {number} rows - The number of rows in the board.
@@ -47,7 +48,6 @@ export const plantMines = (board, minesCount, firstClickCoords) => {
         }
     }
 };
-
 /**
  * Returns an array of all neighboring cells for a given coordinate.
  * @param {Array<Array<Object>>} board - The game board.
@@ -181,4 +181,18 @@ export const formatTime = (totalSeconds) => {
     const displayMinutes = String(minutes).padStart(2, '0');
     const displaySeconds = String(seconds).padStart(2, '0');
     return `${displayMinutes}:${displaySeconds}`;
+};
+/**
+ * Handles the game win logic.
+ * Stops the timer, updates the game state, and saves the player's score.
+ * * @param {Object} state - The current game state object.
+ * @param {string} state.playerName - The name of the player.
+ * @param {string} state.level - The current game difficulty level.
+ * @param {number} state.secondsElapsed - The total time elapsed in seconds.
+ * @param {boolean} state.isGameOver - Flag indicating if the game has ended.
+ */
+export const handleWinLogic = (state) => {
+    stopTimer(state);
+    state.isGameOver = true;
+    saveNewScore(state.playerName, state.level, state.secondsElapsed);
 };
