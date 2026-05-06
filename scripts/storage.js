@@ -4,7 +4,7 @@ const STORAGE_KEY = 'minesweeper_high_scores';
  * Retrieves all high scores from local storage.
  * @returns {Array<Object>} An array of score objects or an empty array if none exist.
  */
-const getAllScores = () => {
+export const getAllScores = () => {
     const rawData = localStorage.getItem(STORAGE_KEY);
     return rawData ? JSON.parse(rawData) : [];
 };
@@ -14,7 +14,7 @@ const getAllScores = () => {
  * @param {string} level - The game difficulty level (e.g., 'easy', 'normal', 'hard').
  * @param {number} time - The completion time in seconds/milliseconds.
  */
-const saveNewScore = (playerName, level, time) => {
+export const saveNewScore = (playerName, level, time) => {
     const scores = getAllScores();
     const newResult = {
         name: playerName,
@@ -30,7 +30,7 @@ const saveNewScore = (playerName, level, time) => {
  * @param {Array<Object>} scoresArray - The array of score objects to sort.
  * @returns {Array<Object>} A new sorted array (shallow copy).
  */
-const sortScoresByTime = (scoresArray) => {
+export const sortScoresByTime = (scoresArray) => {
     return [...scoresArray].sort((a, b) => a.time - b.time);
 };
 /**
@@ -38,7 +38,7 @@ const sortScoresByTime = (scoresArray) => {
  * @param {string} level - The difficulty level to filter by.
  * @returns {Array<Object>} A sorted array of filtered high scores.
  */
-const getFilteredScores = (level) => {
+export const getFilteredScores = (level) => {
     const allScores = getAllScores();
     const filtered = allScores.filter(score => score.level === level);
     return sortScoresByTime(filtered);

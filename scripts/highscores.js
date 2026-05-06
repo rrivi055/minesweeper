@@ -1,5 +1,4 @@
-
-
+import{getAllScores, sortScoresByTime,getCurrentPlayer, getFilteredScores} from './storage.js'
 
 /**
  * Renders high score cards into the provided container.
@@ -38,5 +37,26 @@ const renderScoreCards = (scores,container) => {
 
         container.appendChild(card);
     });
-};       
-// const textNode = document.createTextNode(value);
+};     
+
+/**
+ * Initializes the high scores page by displaying the player's name 
+ * and rendering the initial list of scores.
+ */
+const init = () => {
+    const currentPlayerName = getCurrentPlayer(); 
+    const welcomeElement = document.querySelector('.welcome-message span');
+    if (welcomeElement) {
+        welcomeElement.textContent = `HELLO ${currentPlayerName}`;
+    }
+    const scoresContainer = document.querySelector('.scores-list');
+    if (scoresContainer) {
+        const allScores = getAllScores();
+        renderScoreCards(sortScoresByTime(allScores), scoresContainer);
+    } 
+    // else {
+    //     console.warn('Warning: Scores container not found in the DOM.');
+    // }
+};
+
+document.addEventListener('DOMContentLoaded', init);
