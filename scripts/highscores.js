@@ -38,7 +38,21 @@ const renderScoreCards = (scores,container) => {
         container.appendChild(card);
     });
 };     
-
+/**
+ * Handles the filtering of high scores based on the selected difficulty level.
+ * This function acts as a callback for the level selection buttons.
+ * 
+ * @param {Event} event - The click event object from the level button.
+ * @returns {void}
+ */
+const handleLevelFilter = (event) => {
+    const selectedLevel = event.currentTarget.dataset.level;
+    const filteredScores = getFilteredScores(selectedLevel);
+    const scoresContainer = document.querySelector('.scores-list');
+    if (scoresContainer) {
+        renderScoreCards(filteredScores, scoresContainer);
+    }
+};
 /**
  * Initializes the high scores page by displaying the player's name 
  * and rendering the initial list of scores.
@@ -54,9 +68,5 @@ const init = () => {
         const allScores = getAllScores();
         renderScoreCards(sortScoresByTime(allScores), scoresContainer);
     } 
-    // else {
-    //     console.warn('Warning: Scores container not found in the DOM.');
-    // }
 };
-
 document.addEventListener('DOMContentLoaded', init);
