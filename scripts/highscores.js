@@ -58,15 +58,22 @@ const handleLevelFilter = (event) => {
  * and rendering the initial list of scores.
  */
 const init = () => {
-    const currentPlayerName = getCurrentPlayer(); 
+    const currentPlayerName = getCurrentPlayer();
     const welcomeElement = document.querySelector('.welcome-message span');
     if (welcomeElement) {
         welcomeElement.textContent = `HELLO ${currentPlayerName}`;
     }
-    const scoresContainer = document.querySelector('.scores-list');
-    if (scoresContainer) {
-        const allScores = getAllScores();
-        renderScoreCards(sortScoresByTime(allScores), scoresContainer);
-    } 
+    const filterContainer = document.querySelector('.filters-wrapper');
+    if (filterContainer) {
+        const levelButtons = Array.from(filterContainer.children);
+        levelButtons.forEach(button => {
+            button.addEventListener('click', handleLevelFilter);
+        });
+        const scoresContainer = filterContainer.nextElementSibling;
+        if (scoresContainer) {
+            const allScores = getAllScores();
+            renderScoreCards(sortScoresByTime(allScores), scoresContainer);
+        }
+    }
 };
 document.addEventListener('DOMContentLoaded', init);

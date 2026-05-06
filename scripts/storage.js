@@ -43,3 +43,5 @@ export const getFilteredScores = (level) => {
     const filtered = allScores.filter(score => score.level === level);
     return sortScoresByTime(filtered);
 };
+export const getCurrentPlayer = () => {
+}
