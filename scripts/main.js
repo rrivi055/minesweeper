@@ -1,4 +1,5 @@
-import { createBoard,revealCell,startTimer,stopTimer,resetGameState,checkWinCondition,getSettings } from './gameLogic.js';
+import { createBoard,revealCell,startTimer,stopTimer,resetGameState,checkWinCondition,getSettings,
+            countAdjacentMines,plantMines } from './gameLogic.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -61,6 +62,8 @@ const handleCellClick = (event) => {
     if (gameState.isGameOver || cell.isRevealed || cell.isFlagged) return;
     if (gameState.secondsElapsed === 0 && !gameState.timerInterval) {
         startTimer(gameState,updateStats);
+        plantMines(gameState.board, gameState.minesCount, { row, col });
+        countAdjacentMines(gameState.board);
     }
     revealCell(gameState.board, row, col);
     if (cell.isMine) {
