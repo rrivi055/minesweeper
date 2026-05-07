@@ -84,7 +84,7 @@ const updateDifficultyDisplay = () => {
 };
 /**
  * Updates the visual statistics on the screen.
- * Synchronizes the timer and the remaining mines counter with the gameState.
+ * Synchronizes the timer, remaining mines counter-flags left with the gameState.
  */
 const updateStats = () => {
     const minesCountElement = document.querySelector('#mines-count');
