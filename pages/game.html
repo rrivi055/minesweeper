@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper - Game</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style_game.css">
+</head>
+<body>
+    <header class="game-header">
+        <div class="header-content">
+            <img src="favicon.ico" alt="Logo" class="mini-logo">
+            <span id="difficulty-display"></span> 
+            <div class="stats-container">
+                <div class="stat">
+                    <span class="icon">⌛</span>
+                    <span id="timer">00:00</span> 
+                </div>
+                <div class="stat">
+                    <span class="icon">🚩</span>
+                    <span id="mines-count">10</span>
+                </div>
+            </div>
+            <button id="restart-btn">
+                <span class="icon">🔄</span> restart
+            </button> 
+        </div>
+    </header>
+
+    <main id="game-main">
+        <div id="game-board"></div>
+    </main>
+
+    <footer class="game-footer">
+        <div class="footer-content">
+            <p>RIVI ©</p> 
+        </div>
+    </footer>
+
+    <div id="win-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-x">X</button>
+            <i class="trophy-icon">🏆</i>
+            <h2>GOOD JOB!</h2>
+            <p>YOU FINISHED SUCSESSFULLY THIS STAGE</p>
+            <p>Want again?</p>
+            <div class="modal-actions">
+                <button>Next level</button> <button class="home-btn">home</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="lose-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-x">X</button>
+            <h2>GAME OVER</h2>
+            <p>WE HOPE NEXT TIME WILL BE BETTER</p>
+            <div class="modal-actions">
+                <button>restart</button> <button class="home-btn">home</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script> </body>
+</html>
