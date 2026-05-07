@@ -1,5 +1,5 @@
 import{getAllScores, sortScoresByTime, getFilteredScores } from './storage.js'
-import { formatTime } from './gameLogic.js';
+import { formatTime,DIFFICULTY_ORDER } from './gameLogic.js';
 /**
  * Renders high score cards into the provided container.
  * @param {Array<Object>} scores - Array of score objects to display.
@@ -54,16 +54,32 @@ const handleLevelFilter = (event) => {
     }
 };
 /**
- * Initializes the high scores page by displaying the player's name 
- * and rendering the initial list of scores.
+ * Dynamically creates and renders level filter buttons based on the available game difficulties.
+ * Each button is assigned a data attribute for its respective level and an event listener 
+ * to handle filtering logic when clicked.
+ * * @param {HTMLElement} container - The DOM element where the filter buttons will be appended.
+ * @returns {void}
+ */
+const renderLevelFilters = (container) => {
+    DIFFICULTY_ORDER.forEach(level => {
+        const button = document.createElement('button');
+        button.textContent = level.charAt(0).toUpperCase() + level.slice(1); 
+        button.dataset.level = level;
+        button.classList.add('filter-btn');
+        button.addEventListener('click', handleLevelFilter);
+        container.appendChild(button);
+    });
+};
+/**
+ * Initializes the high scores page by rendering the initial list of scores.
  */
 const init = () => {
     const filterContainer = document.querySelector('.filters-wrapper');
     if (filterContainer) {
-        const levelButtons = Array.from(filterContainer.children);
-        levelButtons.forEach(button => {
-            button.addEventListener('click', handleLevelFilter);
-        });
+        while (filterContainer.firstChild) {
+        filterContainer.removeChild(filterContainer.firstChild);
+        }
+        renderLevelFilters(filterContainer);
         const scoresContainer = filterContainer.nextElementSibling;
         if (scoresContainer) {
             const allScores = getAllScores();
