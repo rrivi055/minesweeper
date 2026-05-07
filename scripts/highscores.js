@@ -1,4 +1,4 @@
-import{getAllScores, sortScoresByTime,getCurrentPlayer, getFilteredScores} from './storage.js'
+import{getAllScores, sortScoresByTime, getFilteredScores } from './storage.js'
 import { formatTime } from './gameLogic.js';
 /**
  * Renders high score cards into the provided container.
@@ -58,11 +58,6 @@ const handleLevelFilter = (event) => {
  * and rendering the initial list of scores.
  */
 const init = () => {
-    const currentPlayerName = getCurrentPlayer();
-    const welcomeElement = document.querySelector('.welcome-message span');
-    if (welcomeElement) {
-        welcomeElement.textContent = `HELLO ${currentPlayerName}`;
-    }
     const filterContainer = document.querySelector('.filters-wrapper');
     if (filterContainer) {
         const levelButtons = Array.from(filterContainer.children);
