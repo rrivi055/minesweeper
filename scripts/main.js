@@ -203,3 +203,4 @@ const goToNextLevel = () => {
     const newUrl = `?userName=${gameState.playerName}&level=${nextLevel}`;
     window.history.pushState({}, '', newUrl);
 };
+document.addEventListener('DOMContentLoaded', initGame);
