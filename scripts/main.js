@@ -107,6 +107,7 @@ const handleGameOver = () => {
     gameState.board.flat().forEach(cell => {
         if (cell.isMine) cell.isRevealed = true;
     });
+    playLoseSequence();
     renderBoard(gameState.board); 
     // הצגת הודעת הפסד
 };
@@ -116,6 +117,7 @@ const handleGameOver = () => {
  */
 const handleWin = () => {
     handleWinLogic(gameState); 
+    playWinSound();
     // הצגת הודעת ניצחון
 };
 /**
