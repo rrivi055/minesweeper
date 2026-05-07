@@ -3,29 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper Professional</title>
+    <title>Minesweeper Professional - Home</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="setup-container">
-        <h1>WELCOME</h1>
+
+    <header class="main-header">
+        <div class="header-content">
+            <img src="favicon.ico" alt="Logo" class="mini-logo">
+            <h1>WELCOME</h1>
+        </div>
+    </header>
+
+    <main id="setup-container">
+        <h2 class="game-title">MINESWEEPER</h2>
+
         <form id="setup-form" action="game.html" method="GET">
-            <label for="player-name">Name:</label>
-            <input type="text" id="player-name" name="userName" placeholder="Enter name" required>
+            <div class="input-group">
+                <label for="player-name">Name</label>
+                <div class="input-row">
+                    <input type="text" id="player-name" name="userName" placeholder="Enter name" required>
+                </div>
+            </div>
 
-            <br><br>
+            <div class="input-group">
+                <label for="level-select">Choose a level</label>
+                <select id="level-select" name="level" required>
+                    <option value="" disabled selected>Select level...</option>
+                    <option value="easy">9x9 easy</option>
+                    <option value="normal">16x16 normal</option>
+                    <option value="hard">30x16 hard</option>
+                </select>
+            </div>
 
-            <label for="level-select">Difficulty:</label>
-            <select id="level-select" name="level" required>
-                <option value="" disabled selected>Select level...</option>
-                <option value="easy">9x9 easy</option>
-                <option value="normal">16x16 normal</option>
-                <option value="hard">30x16 hard</option>
-            </select>
-
-            <br><br>
-
-            <button type="submit" id="start-btn">Start gaming</button>
+            <div class="actions">
+                <button type="submit" id="start-btn" class="primary-btn">Start gaming</button>
+                <button type="button" id="view-highscores-btn">highscores</button>
+            </div>
         </form>
-    </div>
-</body>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>RIVI ©</p>
+        </div>
+    </footer>
+
+    </body>
 </html>
