@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper - Instructions</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style_instructions.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <img src="favicon.ico" alt="Logo" class="mini-logo">
+            <h1>Game Instructions</h1>
+        </div>
+    </header>
+
+    <main id="instructions-container">
+        
+        <section class="intro">
+            <h2>Minesweeper</h2>
+            <p>You have a grid of covered squares, some of which contain mines, but you don't know which ones. Your job is to uncover every square that doesn't contain a mine. If you uncover a square that contains a mine, you lose. If you uncover a square that doesn't contain a mine, you are told how many mines are in the eight surrounding squares.</p>
+            <p>This game needs no introduction; it was made popular by Windows, and is perhaps the best-known desktop puzzle game in existence.</p>
+        </section>
+
+        <section class="difficulty-levels">
+            <h3>Game Levels</h3>
+            <ul>
+                <li><strong>Easy:</strong> 9X9 - 10 mines</li>
+                <li><strong>Medium:</strong> 16X16 - 40 mines</li>
+                <li><strong>Hard:</strong> 30X16 - 99 mines</li>
+            </ul>
+            <p class="note">Winning a level grants the option to proceed to the next difficulty. Winning the hard level - allows you to replay this level.</p>
+        </section>
+
+        <section class="controls">
+            <h3>Minesweeper Controls</h3>
+            <div class="control-group">
+                <h4>Using the Mouse:</h4>
+                <ul>
+                    <li>If you left-click on a covered square, it will be uncovered.</li>
+                    <li>If you right-click on a covered square, a flag will appear indicating that the square is considered a mine. Left-clicking on a marked square will not reveal it, for safety reasons. You can right-click again to remove a mark that was placed by mistake.</li>
+                </ul>
+            </div>
+            <div class="control-group">
+                <h4>Using the Keyboard:</h4>
+                <ul>
+                    <li>You can also use the cursor keys to move around the minefield.</li>
+                    <li>Pressing the Enter key on a covered square will reveal it (so it acts as the left button).</li>
+                    <li>Pressing the Spacebar on a covered square will place a flag (similarly, it acts as the right button).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="special-features">
+            <h3>Additional Information</h3>
+            <ul>
+                <li>If you reveal a square that has no mines in the eight squares surrounding it, then it is obviously safe to reveal those squares in turn, and so on if one of them also has no mines around it. This will be done for you automatically; so sometimes, when you discover a square, a whole new area will open up for exploration.</li>
+                <li>The code is also secured in such a way that the first click will never be a mine, so you will never hit a mine on your first move.</li>
+            </ul>
+        </section>
+
+        <div class="actions">
+            <a href="index.html" class="back-btn">Back to Home</a>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>RIVI ©</p>
+        </div>
+    </footer>
+
+</body>
+</html>
