@@ -170,12 +170,36 @@ const handleRightClick = (event) => {
     updateStats();
     renderBoard(gameState.board);
 };
-
+/**
+ * Initializes the game events by attaching listeners to static DOM elements.
+ * Ensures buttons like 'restart' and 'home' are functional upon page load.
+ * @returns {void}
+ */
+const setupEventListeners = () => {
+    document.querySelectorAll('.restart-btn').forEach(element => {
+        element.addEventListener('click', initGame);
+    });
+    document.querySelectorAll('.home-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    });
+    const nextLevelBtn = document.querySelector('#next-level-btn');
+    if (nextLevelBtn) {
+        nextLevelBtn.addEventListener('click', goToNextLevel);
+    }
+    document.querySelectorAll('.close-x').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            event.target.closest('.modal-overlay').style.display = 'none';
+        });
+    });
+};
 /**
  * Initializes the game state, generates the logical board, 
  * and triggers the initial UI rendering.
  */
 const initGame = () => {
+    setupEventListeners();
     updateDifficultyDisplay(); 
     resetGameState(gameState);
     gameState.board = createBoard(gameState.rows, gameState.cols, gameState.minesCount);
