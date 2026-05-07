@@ -1,4 +1,11 @@
 import { saveNewScore } from './storage.js';
+const levels = {
+    'easy': { rows: 9, cols: 9, mines: 10 },
+    'normal': { rows: 16, cols: 16, mines: 40 },
+    'hard': { rows: 16, cols: 30, mines: 99 }
+};
+export const DIFFICULTY_ORDER = Object.keys(levels); 
+
 /**
  * Creates a 2D array representing the game board.
  * @param {number} rows - The number of rows in the board.
@@ -163,11 +170,6 @@ export const checkWinCondition = (board, minesCount) => {
  * getSettings('easy');
  */
 export const getSettings = (level) => {
-    const levels = {
-        'easy': { rows: 9, cols: 9, mines: 10 },
-        'normal': { rows: 16, cols: 16, mines: 40 },
-        'hard': { rows: 16, cols: 30, mines: 99 }
-    };
     return levels[level] || levels['easy'];
 };
 /**

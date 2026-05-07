@@ -1,5 +1,5 @@
 import { createBoard,plantMines, countAdjacentMines,revealCell,startTimer,stopTimer,resetGameState,
-    checkWinCondition,getSettings,formatTime,handleWinLogic } from './gameLogic.js';
+    checkWinCondition,getSettings,formatTime,handleWinLogic,DIFFICULTY_ORDER } from './gameLogic.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -185,12 +185,9 @@ const initGame = () => {
  * and syncs the URL parameters without a page reload.
  */
 const goToNextLevel = () => {
-    let nextLevel = '';
-    if (gameState.difficulty === 'easy') {
-        nextLevel = 'normal';
-    } else if (gameState.difficulty === 'normal') {
-        nextLevel = 'hard';
-    } else {
+    const currentIndex = DIFFICULTY_ORDER.indexOf(gameState.difficulty);
+    const nextLevel = DIFFICULTY_ORDER[currentIndex + 1]|| gameState.difficulty;
+    if (!nextLevel) {
         initGame();
         return;
     }
