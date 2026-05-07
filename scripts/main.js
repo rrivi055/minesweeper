@@ -109,7 +109,10 @@ const handleGameOver = () => {
     });
     playLoseSequence();
     renderBoard(gameState.board); 
-    // הצגת הודעת הפסד
+    const loseModal = document.querySelector('#lose-modal');
+    if (loseModal) {
+        loseModal.style.display = 'flex'; 
+    }
 };
 /**
  * Handles the game completion logic when a player wins.
@@ -118,7 +121,10 @@ const handleGameOver = () => {
 const handleWin = () => {
     handleWinLogic(gameState); 
     playWinSound();
-    // הצגת הודעת ניצחון
+    const winModal = document.querySelector('#win-modal');
+    if (winModal) {
+        winModal.style.display = 'flex';
+    }
 };
 /**
  * Handles left-click on a cell to reveal it.
