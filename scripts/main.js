@@ -185,11 +185,6 @@ const setupEventListeners = () => {
     document.querySelectorAll('.restart-btn').forEach(element => {
         element.addEventListener('click', initGame);
     });
-    document.querySelectorAll('.home-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
-    });
     const nextLevelBtn = document.querySelector('#next-level-btn');
     if (nextLevelBtn) {
         nextLevelBtn.addEventListener('click', goToNextLevel);
