@@ -32,7 +32,36 @@ body {
     opacity: 0; 
     animation: fadeInSlideIn 0.8s ease-out forwards;
 }
+.title-and-nav {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px; 
+}
 
+.main-header h1 {
+    margin: 0;
+    line-height: 1;
+}
+
+.nav-link {
+    color: #6b7280; 
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: rgba(75, 85, 99, 0.05); 
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+} 
+
+.nav-link:hover {
+    color: #D97706; 
+    background: white;
+    border-color: rgba(217, 119, 6, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
 #setup-container { animation-delay: 0.2s; }
 .main-footer { animation-delay: 0.4s; }
