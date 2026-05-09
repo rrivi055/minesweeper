@@ -138,6 +138,10 @@ strong {
     box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
 }
 
+.main-footer{
+    background-color: rgba(255, 255, 255, 0.5); 
+}
+
 @media (max-width: 600px) {
     #instructions-container {
         margin: 1rem auto;
