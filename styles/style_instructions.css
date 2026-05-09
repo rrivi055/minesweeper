@@ -137,3 +137,47 @@ strong {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
 }
+
+@media (max-width: 600px) {
+    #instructions-container {
+        margin: 1rem auto;
+        padding: 0 15px;
+    }
+
+    section {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    section h2, section h3 {
+        font-size: 1.3rem; 
+    }
+
+   
+    .difficulty-levels ul {
+        grid-template-columns: 1fr; 
+    }
+
+    .main-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .back-btn {
+        width: 100%; 
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 380px) {
+    section {
+        padding: 1rem;
+    }
+
+    section h2, section h3 {
+        font-size: 1.1rem;
+    }
+
+    .main-header h1 {
+        font-size: 1rem;
+    }
+}
