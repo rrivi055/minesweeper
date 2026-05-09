@@ -8,7 +8,7 @@ const nameFromUrl = urlParams.get('userName');
 const levelFromUrl = urlParams.get('level');   
 
 if (!nameFromUrl || !levelFromUrl) {
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
 }
 
 const currentLevelSettings = getSettings(levelFromUrl);
