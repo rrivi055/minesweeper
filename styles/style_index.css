@@ -27,11 +27,11 @@ body {
     }
 }
 
-
 .main-header, #setup-container, .main-footer {
     opacity: 0; 
     animation: fadeInSlideIn 0.8s ease-out forwards;
 }
+
 .title-and-nav {
     display: flex;
     flex-direction: column; 
@@ -104,7 +104,6 @@ body {
     margin: 0 auto; 
     text-align: center;
 }
-
 
 .game-title {
     color: #D97706; 
