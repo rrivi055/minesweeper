@@ -31,7 +31,7 @@ const renderScoreCards = (scores,container) => {
             return p;
         };
         card.appendChild(createScoreLine('Name', score.name));
-        card.appendChild(createScoreLine('Level', score.level));
+        card.appendChild(createScoreLine('Level', (score.level || "").toUpperCase()));
         card.appendChild(createScoreLine('Time', formatTime(score.time)));
         card.appendChild(createScoreLine('Date', score.date || new Date().toLocaleDateString()));
 
