@@ -114,7 +114,7 @@ const handleGameOver = () => {
         if (loseModal) {
             loseModal.style.display = 'flex';
         }
-    }, 100);
+    }, 300);
 };
 /**
  * Handles the game completion logic when a player wins.
