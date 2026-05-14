@@ -189,7 +189,10 @@ const setupEventListeners = () => {
     });
     const nextLevelBtn = document.querySelector('#next-level-btn');
     if (nextLevelBtn) {
-        nextLevelBtn.addEventListener('click', goToNextLevel);
+        nextLevelBtn.addEventListener('click', () => {
+            // document.querySelector('#win-modal').style.display = 'none'; 
+            goToNextLevel(); 
+        });
     }
     document.querySelectorAll('.close-x').forEach(btn => {
         btn.addEventListener('click', (event) => {
@@ -202,6 +205,9 @@ const setupEventListeners = () => {
  * and triggers the initial UI rendering.
  */
 const initGame = () => {
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.style.display = 'none';
+    });
     setupEventListeners();
     updateDifficultyDisplay(); 
     resetGameState(gameState);
