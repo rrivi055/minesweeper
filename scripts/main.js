@@ -109,10 +109,12 @@ const handleGameOver = () => {
     });
     playLoseSequence();
     renderBoard(gameState.board); 
-    const loseModal = document.querySelector('#lose-modal');
-    if (loseModal) {
-        loseModal.style.display = 'flex'; 
-    }
+    setTimeout(() => {
+        const loseModal = document.querySelector('#lose-modal');
+        if (loseModal) {
+            loseModal.style.display = 'flex';
+        }
+    }, 100);
 };
 /**
  * Handles the game completion logic when a player wins.
