@@ -196,5 +196,5 @@ export const formatTime = (totalSeconds) => {
 export const handleWinLogic = (state) => {
     stopTimer(state);
     state.isGameOver = true;
-    saveNewScore(state.playerName, state.level, state.secondsElapsed);
+    saveNewScore(state.playerName, state.difficulty, state.secondsElapsed);
 };
