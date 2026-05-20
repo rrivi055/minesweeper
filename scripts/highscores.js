@@ -80,8 +80,8 @@ const init = () => {
         filterContainer.removeChild(filterContainer.firstChild);
         }
         renderLevelFilters(filterContainer);
-        // const scoresContainer = filterContainer.nextElementSibling;
-        const scoresContainer = document.querySelector('.scores-list');
+        const scoresContainer = filterContainer.nextElementSibling;
+        // const scoresContainer = document.querySelector('.scores-list');
         if (scoresContainer) {
             const allScores = getAllScores();
             renderScoreCards(sortScoresByTime(allScores), scoresContainer);
