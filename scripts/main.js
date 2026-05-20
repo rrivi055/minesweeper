@@ -1,5 +1,5 @@
 import { createBoard,plantMines, countAdjacentMines,revealCell,startTimer,stopTimer,resetGameState,
-    checkWinCondition,getSettings,formatTime,handleWinLogic,DIFFICULTY_ORDER } from './gameLogic.js';
+    checkWinCondition,getSettings,formatTime,handleWinLogic,DIFFICULTY_ORDER } from './gLogic.js';
 import { playWinSound, playLoseSequence } from './audio.js';
 
 const urlParams = new URLSearchParams(window.location.search);

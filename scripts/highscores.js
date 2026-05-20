@@ -1,5 +1,5 @@
 import{getAllScores, sortScoresByTime, getFilteredScores } from './storage.js'
-import { formatTime,DIFFICULTY_ORDER } from './gameLogic.js';
+import { formatTime,DIFFICULTY_ORDER } from './gLogic.js';
 /**
  * Renders high score cards into the provided container.
  * @param {Array<Object>} scores - Array of score objects to display.
