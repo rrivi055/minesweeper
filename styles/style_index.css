@@ -137,6 +137,14 @@ input[type="text"], select {
     color: white;
     font-size: 1rem;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: white !important; 
+    transition: background-color 5000s ease-in-out 0s; 
 }
 
 input:focus, select:focus {
