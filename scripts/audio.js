@@ -1,5 +1,5 @@
-const winSound = new Audio('../audio/win.mp3');
-const loseSound = new Audio('../audio/explotion.wav');
+const winSound = new Audio('/minesweeper/audio/win.mp3');
+const loseSound = new Audio('/minesweeper/audio/explotion.wav');
 
 /**
  * Safely plays an audio object from the beginning.
